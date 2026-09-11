@@ -205,7 +205,7 @@ export default function App() {
   const currentStateName = activeState?.name || stationData?.state || 'Hilly Region';
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans selection:bg-emerald-500 selection:text-white">
       
       {/* 1. Clean Navigation Bar */}
       <Navbar
@@ -258,9 +258,9 @@ export default function App() {
             isAiLoading={isAiLoading}
           />
         ) : (
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-8 flex flex-col items-center justify-center min-h-[240px] text-center">
-            <RefreshCw className="w-8 h-8 text-sky-400 animate-spin mb-3" />
-            <p className="text-sm font-semibold text-slate-200">
+          <div className="bg-white border border-slate-200/90 rounded-2xl p-8 flex flex-col items-center justify-center min-h-[240px] text-center shadow-xs">
+            <RefreshCw className="w-8 h-8 text-emerald-700 animate-spin mb-3" />
+            <p className="text-sm font-bold text-slate-800">
               Retrieving live meteorological &amp; seismic observations...
             </p>
             <p className="text-xs text-slate-500 mt-1">
@@ -307,16 +307,16 @@ export default function App() {
       />
 
       {/* 6. Clean, Professional Footer */}
-      <footer className="mt-auto border-t border-slate-900 bg-slate-950 py-5 text-xs text-slate-500">
+      <footer className="mt-auto border-t border-slate-200 bg-white py-6 text-xs text-slate-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           <div className="flex items-center justify-center sm:justify-start gap-2">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span className="text-slate-400">
+            <ShieldCheck className="w-4 h-4 text-emerald-700" />
+            <span className="text-slate-700 font-semibold">
               Himalayan &amp; Western Ghats Landslide Early Warning System
             </span>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 text-slate-500 text-[11px]">
+          <div className="flex flex-wrap items-center justify-center gap-3 text-slate-500 text-[11px] font-medium">
             <span>1-100 Risk Score Engine</span>
             <span>·</span>
             <span>Tectonic &amp; Seismic Telemetry</span>

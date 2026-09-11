@@ -197,32 +197,32 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
   };
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-2 sm:p-4 bg-slate-950/85 backdrop-blur-md overflow-hidden">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-2 sm:p-4 bg-slate-900/60 backdrop-blur-xs overflow-hidden">
       <div 
-        className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col h-[94vh] max-h-[94vh]"
+        className="bg-white border border-slate-200/90 rounded-2xl w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col h-[94vh] max-h-[94vh]"
         role="dialog"
         aria-modal="true"
       >
         
         {/* Modal Top Header */}
-        <div className="px-5 py-3.5 sm:py-4 bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 shrink-0">
+        <div className="px-5 py-3.5 sm:py-4 bg-white border-b border-slate-200 flex flex-wrap items-center justify-between gap-3 shrink-0">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="w-9 h-9 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 shrink-0 shadow-xs">
               <Sparkles className="w-5 h-5" />
             </div>
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <h3 className="font-bold text-base sm:text-lg text-white tracking-tight truncate">
+                <h3 className="font-extrabold text-base sm:text-lg text-slate-900 tracking-tight truncate">
                   AI Landslide Analysis &amp; Telemetry Dossier
                 </h3>
-                <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 shrink-0">
-                  <Radio className="w-3 h-3 text-indigo-400 animate-pulse" />
+                <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 shrink-0">
+                  <Radio className="w-3 h-3 text-emerald-600 animate-pulse" />
                   Gemini 3.8 Flash
                 </span>
               </div>
-              <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400 mt-0.5">
-                <span className="flex items-center gap-1 text-slate-300 font-medium">
-                  <MapPin className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+              <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500 mt-0.5">
+                <span className="flex items-center gap-1 text-slate-800 font-semibold">
+                  <MapPin className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                   {targetCity}, {targetState}
                 </span>
                 <span>•</span>
@@ -237,17 +237,17 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
             <button
               onClick={handleCopyFullReport}
               disabled={isLoading || !analysis}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-colors disabled:opacity-50 shadow-xs"
               title="Copy comprehensive text dossier to clipboard"
             >
               {copied ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="text-emerald-400 font-bold">Copied!</span>
+                  <Check className="w-3.5 h-3.5 text-emerald-700" />
+                  <span className="text-emerald-700 font-bold">Copied!</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5 text-slate-400" />
+                  <Copy className="w-3.5 h-3.5 text-slate-500" />
                   <span className="hidden sm:inline">Copy Dossier</span>
                 </>
               )}
@@ -255,7 +255,7 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
               aria-label="Close"
             >
               <X className="w-5 h-5" />
@@ -264,7 +264,7 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
         </div>
 
         {/* Options Row with Sideways Scroll Functions & Hidden Scrollbars */}
-        <div className="relative bg-slate-950/80 border-b border-slate-800 flex items-center shrink-0 px-2 sm:px-3 py-1.5">
+        <div className="relative bg-slate-50 border-b border-slate-200 flex items-center shrink-0 px-2 sm:px-3 py-1.5">
           
           {/* Scroll Options Left Button */}
           <button
@@ -275,8 +275,8 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
             aria-label="Scroll options to the left"
             className={`p-1.5 rounded-lg transition-all shrink-0 mr-1.5 flex items-center justify-center ${
               canScrollLeft
-                ? 'bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 shadow-sm cursor-pointer active:scale-95'
-                : 'text-slate-600 bg-slate-900/40 border border-slate-800/50 opacity-30 cursor-not-allowed'
+                ? 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xs cursor-pointer active:scale-95'
+                : 'text-slate-300 bg-slate-100/60 border border-slate-200/60 opacity-40 cursor-not-allowed'
             }`}
           >
             <ChevronLeft className="w-4 h-4" />
@@ -284,7 +284,7 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
           {/* Left shadow fade cue */}
           {canScrollLeft && (
-            <div className="pointer-events-none absolute left-8 sm:left-10 top-0 bottom-0 w-4 bg-gradient-to-r from-slate-950 to-transparent z-10" />
+            <div className="pointer-events-none absolute left-8 sm:left-10 top-0 bottom-0 w-4 bg-gradient-to-r from-slate-50 to-transparent z-10" />
           )}
 
           {/* Options Container: Hidden scrollbars with smooth sideways scrolling */}
@@ -296,10 +296,10 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
           >
             <button
               onClick={() => setActiveTab('overview')}
-              className={`px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
+              className={`px-3 py-1.5 rounded-lg font-bold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
                 activeTab === 'overview'
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                  ? 'bg-emerald-700 text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-100 border border-slate-200/80 shadow-xs'
               }`}
             >
               <Sparkles className="w-3.5 h-3.5" />
@@ -308,20 +308,20 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
             <button
               onClick={() => setActiveTab('critical')}
-              className={`px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
+              className={`px-3 py-1.5 rounded-lg font-bold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
                 isCritical
                   ? activeTab === 'critical'
-                    ? 'bg-rose-600 text-white shadow-md shadow-rose-600/30'
-                    : 'text-rose-400 bg-rose-500/10 border border-rose-500/30'
+                    ? 'bg-rose-600 text-white shadow-xs'
+                    : 'text-rose-700 bg-rose-50 border border-rose-200 font-bold'
                   : activeTab === 'critical'
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                  ? 'bg-emerald-700 text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-100 border border-slate-200/80 shadow-xs'
               }`}
             >
-              <ShieldAlert className={`w-3.5 h-3.5 ${isCritical ? 'text-rose-400' : ''}`} />
+              <ShieldAlert className={`w-3.5 h-3.5 ${isCritical ? 'text-rose-600' : ''}`} />
               <span>Critical Guide &amp; Evacuation</span>
               {isCritical && (
-                <span className="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-rose-500 text-white animate-pulse">
+                <span className="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-rose-600 text-white animate-pulse">
                   ALERT
                 </span>
               )}
@@ -329,10 +329,10 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
             <button
               onClick={() => setActiveTab('telemetry')}
-              className={`px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
+              className={`px-3 py-1.5 rounded-lg font-bold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
                 activeTab === 'telemetry'
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                  ? 'bg-emerald-700 text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-100 border border-slate-200/80 shadow-xs'
               }`}
             >
               <Activity className="w-3.5 h-3.5" />
@@ -341,10 +341,10 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
             <button
               onClick={() => setActiveTab('geology')}
-              className={`px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
+              className={`px-3 py-1.5 rounded-lg font-bold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
                 activeTab === 'geology'
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                  ? 'bg-emerald-700 text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-100 border border-slate-200/80 shadow-xs'
               }`}
             >
               <Layers className="w-3.5 h-3.5" />
@@ -353,32 +353,32 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
             <button
               onClick={() => setActiveTab('precautions')}
-              className={`px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
+              className={`px-3 py-1.5 rounded-lg font-bold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
                 activeTab === 'precautions'
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                  ? 'bg-emerald-700 text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-100 border border-slate-200/80 shadow-xs'
               }`}
             >
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
               <span>Safety &amp; Go-Bag Checklist</span>
             </button>
 
             <button
               onClick={() => setActiveTab('contacts')}
-              className={`px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
+              className={`px-3 py-1.5 rounded-lg font-bold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
                 activeTab === 'contacts'
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                  ? 'bg-emerald-700 text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-100 border border-slate-200/80 shadow-xs'
               }`}
             >
-              <PhoneCall className="w-3.5 h-3.5 text-rose-400" />
+              <PhoneCall className="w-3.5 h-3.5 text-rose-600" />
               <span>Emergency Contacts &amp; Helplines</span>
             </button>
           </div>
 
           {/* Right shadow fade cue */}
           {canScrollRight && (
-            <div className="pointer-events-none absolute right-8 sm:right-10 top-0 bottom-0 w-4 bg-gradient-to-l from-slate-950 to-transparent z-10" />
+            <div className="pointer-events-none absolute right-8 sm:right-10 top-0 bottom-0 w-4 bg-gradient-to-l from-slate-50 to-transparent z-10" />
           )}
 
           {/* Scroll Options Right Button */}
@@ -390,8 +390,8 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
             aria-label="Scroll options to the right"
             className={`p-1.5 rounded-lg transition-all shrink-0 ml-1.5 flex items-center justify-center ${
               canScrollRight
-                ? 'bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 shadow-sm cursor-pointer active:scale-95'
-                : 'text-slate-600 bg-slate-900/40 border border-slate-800/50 opacity-30 cursor-not-allowed'
+                ? 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xs cursor-pointer active:scale-95'
+                : 'text-slate-300 bg-slate-100/60 border border-slate-200/60 opacity-40 cursor-not-allowed'
             }`}
           >
             <ChevronRight className="w-4 h-4" />
@@ -400,17 +400,17 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
         {/* Modal Scrollable Content Body with NO side scrollbars */}
         <div 
-          className="p-4 sm:p-6 overflow-y-auto no-scrollbar space-y-6 flex-1"
+          className="p-4 sm:p-6 overflow-y-auto no-scrollbar space-y-6 flex-1 bg-white"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           
           {isLoading ? (
             <div className="py-16 flex flex-col items-center justify-center space-y-3 text-center">
-              <div className="w-10 h-10 rounded-full border-2 border-indigo-500 border-t-transparent animate-spin" />
-              <p className="text-base font-semibold text-slate-200">
+              <div className="w-10 h-10 rounded-full border-2 border-emerald-600 border-t-transparent animate-spin" />
+              <p className="text-base font-bold text-slate-900">
                 Generating Detailed Geotechnical Dossier &amp; AI Analysis...
               </p>
-              <p className="text-xs text-slate-400 max-w-md">
+              <p className="text-xs text-slate-500 max-w-md">
                 Analyzing real-time weather readings, soil saturation kinetics, tectonic micro-vibrations, and slope stability vectors for {targetCity}.
               </p>
             </div>
@@ -418,26 +418,26 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
             <>
               {/* CRITICAL WARNING BANNER: If risk score > 50 or isCritical is true */}
               {isCritical && (
-                <div className="p-4 sm:p-5 rounded-xl bg-gradient-to-r from-rose-950/70 via-rose-900/40 to-slate-900 border-2 border-rose-500/60 shadow-lg shadow-rose-950/40">
+                <div className="p-4 sm:p-5 rounded-xl bg-rose-50 border-2 border-rose-200 shadow-xs">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div className="flex items-start gap-3">
-                      <div className="p-2 rounded-lg bg-rose-500 text-white shrink-0 shadow-md">
+                      <div className="p-2 rounded-lg bg-rose-600 text-white shrink-0 shadow-xs">
                         <ShieldAlert className="w-6 h-6 animate-pulse" />
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="px-2 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wider bg-rose-500 text-white">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wider bg-rose-600 text-white">
                             {guide?.urgencyLevel === 'CRITICAL_IMMEDIATE_ACTION' ? 'CRITICAL EMERGENCY' : 'HIGH ALERT'}
                           </span>
-                          <span className="text-xs font-semibold text-rose-300">
+                          <span className="text-xs font-bold text-rose-700">
                             Threshold &gt; 50 Exceeded
                           </span>
                         </div>
-                        <h4 className="text-base sm:text-lg font-bold text-white mt-1">
+                        <h4 className="text-base sm:text-lg font-bold text-rose-950 mt-1">
                           {guide?.statusHeading || `Critical Landslide Risk in ${targetCity}`}
                         </h4>
-                        <p className="text-xs sm:text-sm text-rose-200/90 mt-0.5 leading-relaxed">
-                          Composite risk score reached <strong className="text-white font-mono">{targetScore}/100</strong>. Soil pore saturation and seismic accelerations indicate heightened vulnerability to mudflows and slope failure.
+                        <p className="text-xs sm:text-sm text-rose-900/90 mt-0.5 leading-relaxed">
+                          Composite risk score reached <strong className="text-rose-950 font-mono font-bold">{targetScore}/100</strong>. Soil pore saturation and seismic accelerations indicate heightened vulnerability to mudflows and slope failure.
                         </p>
                       </div>
                     </div>
@@ -445,7 +445,7 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                     <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
                       <button
                         onClick={() => setActiveTab('critical')}
-                        className="px-4 py-2 rounded-lg text-xs font-bold bg-rose-600 hover:bg-rose-500 text-white transition-colors shadow-md shadow-rose-600/30 flex items-center gap-1.5"
+                        className="px-4 py-2 rounded-lg text-xs font-bold bg-rose-600 hover:bg-rose-700 text-white transition-colors shadow-xs flex items-center gap-1.5"
                       >
                         <LifeBuoy className="w-4 h-4" />
                         <span>View Evacuation Guide</span>
@@ -462,72 +462,72 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     
                     {/* Score Card */}
-                    <div className="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-xs flex items-center justify-between">
                       <div>
-                        <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
+                        <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                           Landslide Risk Score
                         </span>
                         <div className="flex items-baseline gap-2 mt-1">
                           <span className={`text-3xl font-extrabold font-mono ${
-                            targetScore > 50 ? 'text-rose-400' : targetScore >= 25 ? 'text-amber-400' : 'text-emerald-400'
+                            targetScore > 50 ? 'text-rose-700' : targetScore >= 25 ? 'text-amber-700' : 'text-emerald-700'
                           }`}>
                             {targetScore}
                           </span>
                           <span className="text-xs text-slate-500">/ 100</span>
                         </div>
                         <span className={`text-xs font-bold uppercase tracking-wider ${
-                          targetScore > 50 ? 'text-rose-400' : targetScore >= 25 ? 'text-amber-400' : 'text-emerald-400'
+                          targetScore > 50 ? 'text-rose-700' : targetScore >= 25 ? 'text-amber-700' : 'text-emerald-700'
                         }`}>
                           {targetLevel} Vulnerability
                         </span>
                       </div>
                       <div className={`p-3 rounded-xl border ${
                         targetScore > 50 
-                          ? 'bg-rose-500/10 border-rose-500/30 text-rose-400' 
+                          ? 'bg-rose-50 border-rose-200 text-rose-700' 
                           : targetScore >= 25
-                          ? 'bg-amber-500/10 border-amber-500/30 text-amber-400'
-                          : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
+                          ? 'bg-amber-50 border-amber-200 text-amber-700'
+                          : 'bg-emerald-50 border-emerald-200 text-emerald-700'
                       }`}>
                         {targetScore > 50 ? <ShieldAlert className="w-6 h-6" /> : <ShieldCheck className="w-6 h-6" />}
                       </div>
                     </div>
 
                     {/* Rainfall Contribution */}
-                    <div className="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-xs flex items-center justify-between">
                       <div>
-                        <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
+                        <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                           Rainfall Infiltration
                         </span>
                         <div className="flex items-baseline gap-2 mt-1">
-                          <span className="text-2xl font-bold font-mono text-white">
-                            {targetPrecip} <span className="text-xs font-normal text-slate-400">mm/hr</span>
+                          <span className="text-2xl font-bold font-mono text-slate-900">
+                            {targetPrecip} <span className="text-xs font-normal text-slate-500">mm/hr</span>
                           </span>
                         </div>
-                        <span className="text-xs text-sky-400 font-medium">
+                        <span className="text-xs text-sky-700 font-bold">
                           {targetRainPoints} / 45 Risk Points
                         </span>
                       </div>
-                      <div className="p-3 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-400">
+                      <div className="p-3 rounded-xl bg-sky-50 border border-sky-200 text-sky-700">
                         <CloudRain className="w-6 h-6" />
                       </div>
                     </div>
 
                     {/* Tectonic Vibration */}
-                    <div className="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-xs flex items-center justify-between">
                       <div>
-                        <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
+                        <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                           Seismic Vibration (PGA)
                         </span>
                         <div className="flex items-baseline gap-2 mt-1">
-                          <span className="text-2xl font-bold font-mono text-white">
-                            {targetVib} <span className="text-xs font-normal text-slate-400">Gal</span>
+                          <span className="text-2xl font-bold font-mono text-slate-900">
+                            {targetVib} <span className="text-xs font-normal text-slate-500">Gal</span>
                           </span>
                         </div>
-                        <span className="text-xs text-amber-400 font-medium">
+                        <span className="text-xs text-amber-700 font-bold">
                           {targetTectonicPoints} / 35 Risk Points
                         </span>
                       </div>
-                      <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400">
+                      <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-700">
                         <Activity className="w-6 h-6" />
                       </div>
                     </div>
@@ -536,36 +536,36 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
                   {/* Situation Summary */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <FileText className="w-3.5 h-3.5 text-indigo-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <FileText className="w-3.5 h-3.5 text-emerald-700" />
                       <span>Executive Situation Summary</span>
                     </h4>
-                    <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800 text-sm text-slate-200 leading-relaxed space-y-2">
+                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-700 leading-relaxed space-y-2 shadow-xs">
                       <p>{analysis?.situationSummary}</p>
                     </div>
                   </div>
 
                   {/* Road & Travel Safety Guidance */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <Mountain className="w-3.5 h-3.5 text-emerald-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <Mountain className="w-3.5 h-3.5 text-emerald-700" />
                       <span>Mountain Road &amp; Travel Safety Status</span>
                     </h4>
-                    <div className={`p-4 rounded-xl border flex items-start gap-3 ${
+                    <div className={`p-4 rounded-xl border flex items-start gap-3 shadow-xs ${
                       isCritical
-                        ? 'bg-rose-950/30 border-rose-500/40 text-rose-200'
-                        : 'bg-indigo-950/30 border-indigo-500/30 text-indigo-200'
+                        ? 'bg-rose-50 border-rose-200 text-rose-950'
+                        : 'bg-emerald-50 border-emerald-200 text-emerald-950'
                     }`}>
                       {isCritical ? (
-                        <AlertTriangle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
+                        <AlertTriangle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
                       ) : (
-                        <ShieldCheck className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
+                        <ShieldCheck className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
                       )}
                       <div>
-                        <p className="text-sm font-semibold">
+                        <p className="text-sm font-bold">
                           {analysis?.travelSafetyStatus}
                         </p>
-                        <p className="text-xs opacity-80 mt-1">
+                        <p className="text-xs text-slate-600 mt-1">
                           Evaluated against National Highway guidelines, ghat road geometry, and current slope saturation vectors.
                         </p>
                       </div>
@@ -574,8 +574,8 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
                   {/* Key Precautions Checklist */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
                       <span>Immediate Safety Precautions</span>
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -587,9 +587,9 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                       ]).map((item, idx) => (
                         <div 
                           key={idx} 
-                          className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-950/50 border border-slate-800/80 text-xs sm:text-sm text-slate-300"
+                          className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-700 shadow-xs"
                         >
-                          <span className="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                          <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
                             {idx + 1}
                           </span>
                           <span>{item}</span>
@@ -599,13 +599,13 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                   </div>
 
                   {/* Helplines Quick Access */}
-                  <div className="pt-2 border-t border-slate-800/80">
+                  <div className="pt-2 border-t border-slate-200">
                     <div className="flex items-center justify-between mb-2">
-                      <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                        <PhoneCall className="w-3.5 h-3.5 text-rose-400" />
+                      <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                        <PhoneCall className="w-3.5 h-3.5 text-rose-600" />
                         <span>Emergency Assistance Helplines</span>
                       </h4>
-                      <span className="text-[11px] text-slate-500">24/7 Toll-Free Dispatch</span>
+                      <span className="text-[11px] text-slate-500 font-medium">24/7 Toll-Free Dispatch</span>
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                       {(analysis?.emergencyHelplines || [
@@ -617,10 +617,10 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                         <a
                           key={i}
                           href={`tel:${h.number}`}
-                          className="p-2.5 rounded-lg bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 transition-all text-center group"
+                          className="p-2.5 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 hover:border-slate-300 transition-all text-center group shadow-xs"
                         >
-                          <span className="text-[10px] text-slate-400 block truncate">{h.name}</span>
-                          <span className="text-base font-extrabold text-rose-400 group-hover:text-rose-300 font-mono">
+                          <span className="text-[10px] text-slate-500 font-medium block truncate">{h.name}</span>
+                          <span className="text-base font-extrabold text-rose-700 group-hover:text-rose-800 font-mono">
                             {h.number}
                           </span>
                         </a>
@@ -635,33 +635,33 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                 <div className="space-y-6">
                   
                   {/* Status Directive Banner */}
-                  <div className={`p-4 rounded-xl border ${
+                  <div className={`p-4 rounded-xl border shadow-xs ${
                     isCritical
-                      ? 'bg-rose-950/40 border-rose-500/50 text-rose-200'
-                      : 'bg-slate-950 border-slate-800 text-slate-300'
+                      ? 'bg-rose-50 border-rose-200 text-rose-950'
+                      : 'bg-slate-50 border-slate-200 text-slate-800'
                   }`}>
                     <div className="flex items-center gap-2">
                       <span className={`px-2.5 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider ${
-                        isCritical ? 'bg-rose-500 text-white' : 'bg-slate-800 text-slate-300 border border-slate-700'
+                        isCritical ? 'bg-rose-600 text-white' : 'bg-slate-200 text-slate-700 border border-slate-300'
                       }`}>
                         {guide?.urgencyLevel || (isCritical ? 'CRITICAL_IMMEDIATE_ACTION' : 'PREPAREDNESS_PROTOCOL')}
                       </span>
-                      <span className="text-xs text-slate-400">
+                      <span className="text-xs text-slate-500 font-medium">
                         Target Site: {targetCity}, {targetState}
                       </span>
                     </div>
-                    <h3 className="text-lg font-bold text-white mt-2">
+                    <h3 className="text-lg font-bold text-slate-900 mt-2">
                       {guide?.statusHeading || `Emergency Action Protocol: ${targetCity}`}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                       This operational guide is activated whenever the multi-factor Landslide Risk Score breaches safe thresholds or when terrain saturation reaches critical limits.
                     </p>
                   </div>
 
                   {/* 1. Immediate Survival Actions */}
                   <div className="space-y-2.5">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <LifeBuoy className="w-3.5 h-3.5 text-rose-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <LifeBuoy className="w-3.5 h-3.5 text-rose-600" />
                       <span>1. Immediate Action Directives</span>
                     </h4>
                     <div className="space-y-2">
@@ -673,12 +673,12 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                       ]).map((action, idx) => (
                         <div 
                           key={idx}
-                          className="flex items-start gap-3 p-3 rounded-lg bg-slate-950/80 border border-slate-800"
+                          className="flex items-start gap-3 p-3 rounded-lg bg-slate-50 border border-slate-200 shadow-xs"
                         >
-                          <span className="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/40 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                          <span className="w-6 h-6 rounded-full bg-rose-100 text-rose-700 border border-rose-300 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
                             {idx + 1}
                           </span>
-                          <span className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">
+                          <span className="text-xs sm:text-sm text-slate-800 leading-relaxed font-medium">
                             {action}
                           </span>
                         </div>
@@ -688,24 +688,24 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
                   {/* 2. Topographical Evacuation Route Protocol */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <Mountain className="w-3.5 h-3.5 text-sky-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <Mountain className="w-3.5 h-3.5 text-sky-700" />
                       <span>2. Topographical Evacuation Route Protocol</span>
                     </h4>
-                    <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2">
-                      <div className="flex items-start gap-2.5 text-sky-300">
-                        <AlertCircle className="w-5 h-5 text-sky-400 shrink-0 mt-0.5" />
+                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 shadow-xs">
+                      <div className="flex items-start gap-2.5 text-sky-900">
+                        <AlertCircle className="w-5 h-5 text-sky-600 shrink-0 mt-0.5" />
                         <p className="text-xs sm:text-sm font-semibold">
                           {guide?.evacuationRoutesProtocol || "CRITICAL ESCAPE RULE: Never flee down a valley, stream canyon, or natural drainage chute. Always move PERPENDICULAR to the slide vector, gaining elevation onto broad, bedrock-anchored ridges."}
                         </p>
                       </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-slate-800/80 text-xs text-slate-400">
-                        <div className="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800">
-                          <span className="font-bold text-emerald-400 block mb-0.5">DO MOVE TOWARDS:</span>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-slate-200 text-xs text-slate-600">
+                        <div className="p-2.5 rounded-lg bg-white border border-slate-200 shadow-xs">
+                          <span className="font-bold text-emerald-700 block mb-0.5">DO MOVE TOWARDS:</span>
                           Broad convex ridges, stable bedrock spurs, designated elevated municipal stadiums.
                         </div>
-                        <div className="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800">
-                          <span className="font-bold text-rose-400 block mb-0.5">DO NOT MOVE TOWARDS:</span>
+                        <div className="p-2.5 rounded-lg bg-white border border-slate-200 shadow-xs">
+                          <span className="font-bold text-rose-700 block mb-0.5">DO NOT MOVE TOWARDS:</span>
                           Stream beds, ravine floors, hollows, or directly beneath excavated road cuts.
                         </div>
                       </div>
@@ -714,8 +714,8 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
                   {/* 3. Sensory Warning Signs of Imminent Failure */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <Eye className="w-3.5 h-3.5 text-amber-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <Eye className="w-3.5 h-3.5 text-amber-600" />
                       <span>3. Physical &amp; Sensory Warning Signs to Watch For</span>
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -727,9 +727,9 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                       ]).map((sign, idx) => (
                         <div 
                           key={idx}
-                          className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-950/60 border border-slate-800 text-xs text-slate-300"
+                          className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-700 shadow-xs"
                         >
-                          <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                          <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
                           <span>{sign}</span>
                         </div>
                       ))}
@@ -738,8 +738,8 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
                   {/* 4. Go-Bag & Survival Checklist */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <Shield className="w-3.5 h-3.5 text-indigo-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <Shield className="w-3.5 h-3.5 text-emerald-700" />
                       <span>4. Rapid Evacuation &ldquo;Go-Bag&rdquo; Checklist</span>
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -753,9 +753,9 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                       ]).map((item, idx) => (
                         <div 
                           key={idx}
-                          className="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-950/50 border border-slate-800 text-xs text-slate-300"
+                          className="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-700 shadow-xs"
                         >
-                          <CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0" />
+                          <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" />
                           <span>{item}</span>
                         </div>
                       ))}
@@ -763,13 +763,13 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                   </div>
 
                   {/* 5. Safe Assembly Muster Zone */}
-                  <div className="p-3.5 rounded-xl bg-slate-950/90 border border-slate-800 flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                  <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 flex items-start gap-3 shadow-xs">
+                    <MapPin className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
                     <div>
-                      <span className="text-xs font-bold text-slate-300 uppercase tracking-wider block">
+                      <span className="text-xs font-bold text-emerald-900 uppercase tracking-wider block">
                         Recommended Safe Assembly Zone
                       </span>
-                      <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
+                      <p className="text-xs sm:text-sm text-emerald-800 mt-0.5">
                         {guide?.safeAssemblyZone || `Designated concrete municipal stadium, SDMA civil relief center, or high ridge vantage points above ${targetElevation + 50}m ASL.`}
                       </p>
                     </div>
@@ -777,8 +777,8 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
                   {/* 6. Authoritative Contacts to Notify */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <PhoneCall className="w-3.5 h-3.5 text-rose-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <PhoneCall className="w-3.5 h-3.5 text-rose-600" />
                       <span>5. Emergency Authorities to Notify</span>
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -790,15 +790,15 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                       ]).map((auth, idx) => (
                         <div 
                           key={idx}
-                          className="p-3 rounded-lg bg-slate-950 border border-slate-800 flex items-center justify-between gap-2"
+                          className="p-3 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-between gap-2 shadow-xs"
                         >
                           <div>
-                            <span className="text-xs font-bold text-white block">{auth.agency}</span>
-                            <span className="text-[11px] text-slate-400 block">{auth.role}</span>
+                            <span className="text-xs font-bold text-slate-900 block">{auth.agency}</span>
+                            <span className="text-[11px] text-slate-500 block">{auth.role}</span>
                           </div>
                           <a 
                             href={`tel:${auth.contact.replace(/\s+/g, '')}`}
-                            className="px-2.5 py-1.5 rounded-md bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-400 font-mono font-bold text-xs shrink-0 transition-colors"
+                            className="px-2.5 py-1.5 rounded-md bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 font-mono font-bold text-xs shrink-0 transition-colors"
                           >
                             {auth.contact}
                           </a>
@@ -815,25 +815,25 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                 <div className="space-y-5">
                   
                   {/* Location Header Strip */}
-                  <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 flex flex-wrap items-center justify-between gap-3">
+                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-wrap items-center justify-between gap-3 shadow-xs">
                     <div>
-                      <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
+                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                         Reading Location Station Dossier
                       </span>
-                      <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+                      <h3 className="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2">
                         <span>{targetCity}, {targetState}</span>
-                        <span className="text-xs font-normal text-slate-400">({targetCountry})</span>
+                        <span className="text-xs font-normal text-slate-500">({targetCountry})</span>
                       </h3>
                     </div>
 
                     <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-                      <span className="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-sky-400">
+                      <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-sky-700 shadow-xs">
                         GPS: {targetLat.toFixed(4)}°N, {targetLon.toFixed(4)}°E
                       </span>
-                      <span className="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-indigo-400">
+                      <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-emerald-700 shadow-xs">
                         Elev: {targetElevation}m ASL
                       </span>
-                      <span className="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-400">
+                      <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 shadow-xs">
                         Obs: {targetObsTime}
                       </span>
                     </div>
@@ -841,60 +841,60 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
                   {/* 1. Meteorological Sensor Suite Readings */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <CloudRain className="w-3.5 h-3.5 text-sky-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <CloudRain className="w-3.5 h-3.5 text-sky-700" />
                       <span>Live Atmospheric &amp; Weather Readings</span>
                     </h4>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                       
-                      <div className="p-3 rounded-lg bg-slate-950 border border-slate-800">
-                        <span className="text-[10px] uppercase font-semibold text-slate-400 block">Rainfall Rate</span>
-                        <span className="text-lg font-bold text-white font-mono">{targetPrecip}</span>
-                        <span className="text-xs text-slate-400 ml-1">mm/hr</span>
-                        <span className="text-[10px] text-sky-400 block mt-0.5">{targetRainPoints}/45 score</span>
+                      <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 shadow-xs">
+                        <span className="text-[10px] uppercase font-bold text-slate-500 block">Rainfall Rate</span>
+                        <span className="text-lg font-bold text-slate-900 font-mono">{targetPrecip}</span>
+                        <span className="text-xs text-slate-500 ml-1">mm/hr</span>
+                        <span className="text-[10px] text-sky-700 font-bold block mt-0.5">{targetRainPoints}/45 score</span>
                       </div>
 
-                      <div className="p-3 rounded-lg bg-slate-950 border border-slate-800">
-                        <span className="text-[10px] uppercase font-semibold text-slate-400 block">Relative Humidity</span>
-                        <span className="text-lg font-bold text-white font-mono">{targetHumidity}</span>
-                        <span className="text-xs text-slate-400 ml-1">%</span>
-                        <span className="text-[10px] text-slate-400 block mt-0.5">Atmospheric sat.</span>
+                      <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 shadow-xs">
+                        <span className="text-[10px] uppercase font-bold text-slate-500 block">Relative Humidity</span>
+                        <span className="text-lg font-bold text-slate-900 font-mono">{targetHumidity}</span>
+                        <span className="text-xs text-slate-500 ml-1">%</span>
+                        <span className="text-[10px] text-slate-500 block mt-0.5">Atmospheric sat.</span>
                       </div>
 
-                      <div className="p-3 rounded-lg bg-slate-950 border border-slate-800">
-                        <span className="text-[10px] uppercase font-semibold text-slate-400 block">Temperature</span>
-                        <span className="text-lg font-bold text-white font-mono">{targetTemp}°C</span>
-                        <span className="text-[10px] text-slate-400 block mt-0.5">Feels {targetFeelsLike}°C</span>
+                      <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 shadow-xs">
+                        <span className="text-[10px] uppercase font-bold text-slate-500 block">Temperature</span>
+                        <span className="text-lg font-bold text-slate-900 font-mono">{targetTemp}°C</span>
+                        <span className="text-[10px] text-slate-500 block mt-0.5">Feels {targetFeelsLike}°C</span>
                       </div>
 
-                      <div className="p-3 rounded-lg bg-slate-950 border border-slate-800">
-                        <span className="text-[10px] uppercase font-semibold text-slate-400 block">Barometric Pressure</span>
-                        <span className="text-lg font-bold text-white font-mono">{targetPressure}</span>
-                        <span className="text-xs text-slate-400 ml-1">mb</span>
-                        <span className="text-[10px] text-slate-400 block mt-0.5">Surface gradient</span>
+                      <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 shadow-xs">
+                        <span className="text-[10px] uppercase font-bold text-slate-500 block">Barometric Pressure</span>
+                        <span className="text-lg font-bold text-slate-900 font-mono">{targetPressure}</span>
+                        <span className="text-xs text-slate-500 ml-1">mb</span>
+                        <span className="text-[10px] text-slate-500 block mt-0.5">Surface gradient</span>
                       </div>
 
-                      <div className="p-3 rounded-lg bg-slate-950 border border-slate-800">
-                        <span className="text-[10px] uppercase font-semibold text-slate-400 block">Wind Velocity</span>
-                        <span className="text-lg font-bold text-white font-mono">{targetWindSpeed}</span>
-                        <span className="text-xs text-slate-400 ml-1">km/h ({targetWindDir})</span>
+                      <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 shadow-xs">
+                        <span className="text-[10px] uppercase font-bold text-slate-500 block">Wind Velocity</span>
+                        <span className="text-lg font-bold text-slate-900 font-mono">{targetWindSpeed}</span>
+                        <span className="text-xs text-slate-500 ml-1">km/h ({targetWindDir})</span>
                       </div>
 
-                      <div className="p-3 rounded-lg bg-slate-950 border border-slate-800">
-                        <span className="text-[10px] uppercase font-semibold text-slate-400 block">Visibility</span>
-                        <span className="text-lg font-bold text-white font-mono">{targetVisibility}</span>
-                        <span className="text-xs text-slate-400 ml-1">km</span>
+                      <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 shadow-xs">
+                        <span className="text-[10px] uppercase font-bold text-slate-500 block">Visibility</span>
+                        <span className="text-lg font-bold text-slate-900 font-mono">{targetVisibility}</span>
+                        <span className="text-xs text-slate-500 ml-1">km</span>
                       </div>
 
-                      <div className="p-3 rounded-lg bg-slate-950 border border-slate-800">
-                        <span className="text-[10px] uppercase font-semibold text-slate-400 block">Cloud Cover</span>
-                        <span className="text-lg font-bold text-white font-mono">{targetCloudCover}</span>
-                        <span className="text-xs text-slate-400 ml-1">%</span>
+                      <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 shadow-xs">
+                        <span className="text-[10px] uppercase font-bold text-slate-500 block">Cloud Cover</span>
+                        <span className="text-lg font-bold text-slate-900 font-mono">{targetCloudCover}</span>
+                        <span className="text-xs text-slate-500 ml-1">%</span>
                       </div>
 
-                      <div className="p-3 rounded-lg bg-slate-950 border border-slate-800">
-                        <span className="text-[10px] uppercase font-semibold text-slate-400 block">Sky Condition</span>
-                        <span className="text-sm font-bold text-white capitalize truncate block mt-1">{targetDesc}</span>
+                      <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 shadow-xs">
+                        <span className="text-[10px] uppercase font-bold text-slate-500 block">Sky Condition</span>
+                        <span className="text-sm font-bold text-slate-900 capitalize truncate block mt-1">{targetDesc}</span>
                       </div>
 
                     </div>
@@ -902,37 +902,37 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
                   {/* 2. Seismological & Tectonic Sensor Readings */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <Activity className="w-3.5 h-3.5 text-amber-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <Activity className="w-3.5 h-3.5 text-amber-600" />
                       <span>Seismological &amp; Tectonic Readings</span>
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       
-                      <div className="p-3.5 rounded-lg bg-slate-950 border border-slate-800 space-y-1">
-                        <span className="text-[11px] font-semibold text-slate-400 uppercase block">Active Fault System</span>
-                        <p className="text-sm font-bold text-white">{targetFault}</p>
-                        <p className="text-xs text-slate-400">Major Himalayan crustal discontinuity corridor</p>
+                      <div className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 space-y-1 shadow-xs">
+                        <span className="text-[11px] font-bold text-slate-500 uppercase block">Active Fault System</span>
+                        <p className="text-sm font-bold text-slate-900">{targetFault}</p>
+                        <p className="text-xs text-slate-500">Major Himalayan crustal discontinuity corridor</p>
                       </div>
 
-                      <div className="p-3.5 rounded-lg bg-slate-950 border border-slate-800 space-y-1">
-                        <span className="text-[11px] font-semibold text-slate-400 uppercase block">Seismic Hazard Zone</span>
-                        <p className="text-sm font-bold text-white">{targetSeismicZone} (High to Very High Vulnerability)</p>
-                        <p className="text-xs text-slate-400">Bureau of Indian Standards (IS 1893:2002)</p>
+                      <div className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 space-y-1 shadow-xs">
+                        <span className="text-[11px] font-bold text-slate-500 uppercase block">Seismic Hazard Zone</span>
+                        <p className="text-sm font-bold text-slate-900">{targetSeismicZone} (High to Very High Vulnerability)</p>
+                        <p className="text-xs text-slate-500">Bureau of Indian Standards (IS 1893:2002)</p>
                       </div>
 
-                      <div className="p-3.5 rounded-lg bg-slate-950 border border-slate-800 space-y-1">
-                        <span className="text-[11px] font-semibold text-slate-400 uppercase block">Peak Ground Acceleration (PGA)</span>
+                      <div className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 space-y-1 shadow-xs">
+                        <span className="text-[11px] font-bold text-slate-500 uppercase block">Peak Ground Acceleration (PGA)</span>
                         <div className="flex items-baseline gap-2">
-                          <span className="text-xl font-bold font-mono text-amber-400">{targetVib} Gal</span>
-                          <span className="text-xs text-slate-400 font-mono">({(targetVib / 980).toFixed(4)} g)</span>
+                          <span className="text-xl font-bold font-mono text-amber-700">{targetVib} Gal</span>
+                          <span className="text-xs text-slate-500 font-mono">({(targetVib / 980).toFixed(4)} g)</span>
                         </div>
-                        <p className="text-xs text-slate-400">Tremor Status: <strong className="text-slate-200">{targetTremorStatus}</strong></p>
+                        <p className="text-xs text-slate-500">Tremor Status: <strong className="text-slate-800 font-bold">{targetTremorStatus}</strong></p>
                       </div>
 
-                      <div className="p-3.5 rounded-lg bg-slate-950 border border-slate-800 space-y-1">
-                        <span className="text-[11px] font-semibold text-slate-400 uppercase block">Tectonic Convergence Velocity</span>
-                        <p className="text-sm font-bold text-white">{targetPlateRate}</p>
-                        <p className="text-xs text-slate-400">GPS geodetic measurement of Indian Plate underthrusting</p>
+                      <div className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 space-y-1 shadow-xs">
+                        <span className="text-[11px] font-bold text-slate-500 uppercase block">Tectonic Convergence Velocity</span>
+                        <p className="text-sm font-bold text-slate-900">{targetPlateRate}</p>
+                        <p className="text-xs text-slate-500">GPS geodetic measurement of Indian Plate underthrusting</p>
                       </div>
 
                     </div>
@@ -940,19 +940,19 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
                   {/* 3. Composite 1-100 Risk Score Decomposition */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <Gauge className="w-3.5 h-3.5 text-indigo-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <Gauge className="w-3.5 h-3.5 text-emerald-700" />
                       <span>Mathematical Score Breakdown (1-100)</span>
                     </h4>
-                    <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3 shadow-xs">
                       <div className="space-y-1.5">
                         <div className="flex justify-between text-xs">
-                          <span className="text-slate-300">Precipitation &amp; Moisture Factor (Max 45)</span>
-                          <span className="font-mono font-bold text-sky-400">{targetRainPoints} / 45 pts</span>
+                          <span className="text-slate-700 font-medium">Precipitation &amp; Moisture Factor (Max 45)</span>
+                          <span className="font-mono font-bold text-sky-700">{targetRainPoints} / 45 pts</span>
                         </div>
-                        <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                        <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
                           <div 
-                            className="bg-sky-500 h-2 rounded-full transition-all"
+                            className="bg-sky-600 h-2 rounded-full transition-all"
                             style={{ width: `${(targetRainPoints / 45) * 100}%` }}
                           />
                         </div>
@@ -960,10 +960,10 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
                       <div className="space-y-1.5">
                         <div className="flex justify-between text-xs">
-                          <span className="text-slate-300">Tectonic Micro-Vibration &amp; Fault Strain (Max 35)</span>
-                          <span className="font-mono font-bold text-amber-400">{targetTectonicPoints} / 35 pts</span>
+                          <span className="text-slate-700 font-medium">Tectonic Micro-Vibration &amp; Fault Strain (Max 35)</span>
+                          <span className="font-mono font-bold text-amber-700">{targetTectonicPoints} / 35 pts</span>
                         </div>
-                        <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                        <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
                           <div 
                             className="bg-amber-500 h-2 rounded-full transition-all"
                             style={{ width: `${(targetTectonicPoints / 35) * 100}%` }}
@@ -973,20 +973,20 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
                       <div className="space-y-1.5">
                         <div className="flex justify-between text-xs">
-                          <span className="text-slate-300">Slope Gradient &amp; Topographic Hazard (Max 20)</span>
-                          <span className="font-mono font-bold text-emerald-400">{targetSlopePoints} / 20 pts</span>
+                          <span className="text-slate-700 font-medium">Slope Gradient &amp; Topographic Hazard (Max 20)</span>
+                          <span className="font-mono font-bold text-emerald-700">{targetSlopePoints} / 20 pts</span>
                         </div>
-                        <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                        <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
                           <div 
-                            className="bg-emerald-500 h-2 rounded-full transition-all"
+                            className="bg-emerald-600 h-2 rounded-full transition-all"
                             style={{ width: `${(targetSlopePoints / 20) * 100}%` }}
                           />
                         </div>
                       </div>
 
-                      <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-xs">
-                        <span className="font-bold text-slate-300">Total Composite Landslide Risk Score</span>
-                        <span className="text-base font-extrabold font-mono text-white">
+                      <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-xs">
+                        <span className="font-bold text-slate-800">Total Composite Landslide Risk Score</span>
+                        <span className="text-base font-extrabold font-mono text-slate-900">
                           {targetScore} / 100 ({targetLevel})
                         </span>
                       </div>
@@ -1000,25 +1000,25 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
               {activeTab === 'geology' && (
                 <div className="space-y-5">
                   
-                  <div className="p-4 rounded-xl bg-gradient-to-r from-indigo-950/40 via-slate-900 to-slate-950 border border-indigo-500/30">
-                    <span className="text-[11px] font-semibold text-indigo-300 uppercase tracking-wider block">
+                  <div className="p-4 rounded-xl bg-gradient-to-r from-emerald-50 via-slate-50 to-emerald-50/40 border border-emerald-200 shadow-xs">
+                    <span className="text-[11px] font-bold text-emerald-800 uppercase tracking-wider block">
                       Senior Geotechnical &amp; Hydrological Analysis
                     </span>
-                    <h3 className="text-base font-bold text-white mt-0.5">
+                    <h3 className="text-base font-bold text-slate-900 mt-0.5">
                       Physical Mechanics of Slope Vulnerability in {targetCity}
                     </h3>
-                    <p className="text-xs text-slate-300 mt-1 leading-relaxed">
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
                       Detailed assessment explaining how precipitation, ground accelerations, and bedrock morphology interact to determine slope shear strength.
                     </p>
                   </div>
 
                   {/* 1. Soil Saturation & Pore-Water Mechanics */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <Droplets className="w-3.5 h-3.5 text-sky-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <Droplets className="w-3.5 h-3.5 text-sky-700" />
                       <span>1. Soil Saturation &amp; Pore-Water Pressure Mechanics</span>
                     </h4>
-                    <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs sm:text-sm text-slate-300 leading-relaxed space-y-2">
+                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed space-y-2 shadow-xs">
                       <p>
                         {geology?.soilSaturationMechanics || `Heavy precipitation (${targetPrecip} mm/hr) coupled with ${targetHumidity}% humidity elevates the groundwater table within the unconsolidated colluvium mantle. As interstitial pore spaces fill with water, pore-water pressure rises rapidly, counteracting normal effective stress and reducing the frictional shear strength along the bedrock boundary.`}
                       </p>
@@ -1027,11 +1027,11 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
                   {/* 2. Tectonic & Micro-Seismic Shear Stress */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <Activity className="w-3.5 h-3.5 text-amber-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <Activity className="w-3.5 h-3.5 text-amber-600" />
                       <span>2. Tectonic Shear Stress &amp; Vibration Amplification</span>
                     </h4>
-                    <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs sm:text-sm text-slate-300 leading-relaxed space-y-2">
+                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed space-y-2 shadow-xs">
                       <p>
                         {geology?.tectonicShearStress || `Ground acceleration measured at ${targetVib} Gal near the active ${targetFault} in ${targetSeismicZone} induces cyclic inertial loads across saturated slope cuts. Micro-seismic vibrations reduce cohesive bonding between weathered phyllite/schist bedrock layers, creating momentary liquefaction pockets that precipitate sudden rotational or translational slides.`}
                       </p>
@@ -1040,11 +1040,11 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
                   {/* 3. Slope Terrain Vulnerability */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <Mountain className="w-3.5 h-3.5 text-emerald-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <Mountain className="w-3.5 h-3.5 text-emerald-700" />
                       <span>3. Slope Incline &amp; Topographic Vulnerability</span>
                     </h4>
-                    <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs sm:text-sm text-slate-300 leading-relaxed space-y-2">
+                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed space-y-2 shadow-xs">
                       <p>
                         {geology?.slopeTerrainVulnerability || `At an altitude of ~${targetElevation}m ASL, steep hillside gradients (frequently exceeding 35°) with anthropogenic road cutting leave unsupported toe sections. Combined with colluvial gravel-soil overburden, the factor of safety (FoS) decreases whenever saturation coincides with micro-tremors.`}
                       </p>
@@ -1053,8 +1053,8 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
                   {/* Critical Risk Drivers */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <AlertCircle className="w-3.5 h-3.5 text-rose-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <AlertCircle className="w-3.5 h-3.5 text-rose-600" />
                       <span>Key Physical Risk Drivers Identified by AI</span>
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -1066,9 +1066,9 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                       ]).map((driver, idx) => (
                         <div 
                           key={idx}
-                          className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-950/60 border border-slate-800 text-xs text-slate-300"
+                          className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-700 shadow-xs"
                         >
-                          <span className="w-1.5 h-1.5 rounded-full bg-rose-400 shrink-0 mt-1.5" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-rose-600 shrink-0 mt-1.5" />
                           <span>{driver}</span>
                         </div>
                       ))}
@@ -1077,11 +1077,11 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
                   {/* 12-Hour Forward-Looking Prognosis */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5 text-indigo-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-emerald-700" />
                       <span>12-Hour Stability Forecast &amp; Prognosis</span>
                     </h4>
-                    <div className="p-3.5 rounded-xl bg-slate-950 border border-indigo-500/20 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    <div className="p-3.5 rounded-xl bg-slate-50 border border-emerald-200 text-xs sm:text-sm text-slate-700 leading-relaxed shadow-xs">
                       {geology?.prognosisNext12Hours || (
                         isCritical
                           ? "Elevated risk is projected to persist over the next 12-18 hours until cumulative rainfall subsides below 3 mm/hr and soil drainage stabilizes."
@@ -1097,22 +1097,22 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
               {activeTab === 'precautions' && (
                 <div className="space-y-6">
                   {/* Header summary */}
-                  <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
-                    <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
+                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-xs">
+                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                       Citizen Safety &amp; Preparedness Directives
                     </span>
-                    <h3 className="text-base sm:text-lg font-bold text-white mt-1">
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900 mt-1">
                       Immediate Safety Precautions &amp; Go-Bag Checklist
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-300 mt-1">
+                    <p className="text-xs sm:text-sm text-slate-600 mt-1">
                       Actionable protocols and essential survival provisions for residents and travelers in {targetCity}, {targetState}.
                     </p>
                   </div>
 
                   {/* Immediate Safety Precautions */}
                   <div className="space-y-2.5">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                       <span>Immediate Safety Precautions</span>
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -1126,9 +1126,9 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                       ]).map((precaution, idx) => (
                         <div
                           key={idx}
-                          className="p-3 rounded-lg bg-slate-950/70 border border-slate-800 flex items-start gap-2.5 text-xs text-slate-200"
+                          className="p-3 rounded-lg bg-slate-50 border border-slate-200 flex items-start gap-2.5 text-xs text-slate-700 shadow-xs"
                         >
-                          <span className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
+                          <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-300 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
                             {idx + 1}
                           </span>
                           <span>{precaution}</span>
@@ -1139,8 +1139,8 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
                   {/* Rapid Evacuation "Go-Bag" Checklist */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <Shield className="w-3.5 h-3.5 text-indigo-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <Shield className="w-3.5 h-3.5 text-emerald-700" />
                       <span>Rapid Evacuation &ldquo;Go-Bag&rdquo; Essential Checklist</span>
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -1154,9 +1154,9 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                       ]).map((item, idx) => (
                         <div 
                           key={idx}
-                          className="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-950/50 border border-slate-800 text-xs text-slate-300"
+                          className="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-700 shadow-xs"
                         >
-                          <CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0" />
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                           <span>{item}</span>
                         </div>
                       ))}
@@ -1165,8 +1165,8 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
 
                   {/* Sensory Warning Signs */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <Eye className="w-3.5 h-3.5 text-amber-400" />
+                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <Eye className="w-3.5 h-3.5 text-amber-600" />
                       <span>Physical &amp; Sensory Failure Indicators to Watch</span>
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -1178,9 +1178,9 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                       ]).map((sign, idx) => (
                         <div 
                           key={idx}
-                          className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-950/60 border border-slate-800 text-xs text-slate-300"
+                          className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-700 shadow-xs"
                         >
-                          <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                          <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
                           <span>{sign}</span>
                         </div>
                       ))}
@@ -1193,14 +1193,14 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
               {/* TAB 6: EMERGENCY AUTHORITIES & DISASTER HELPLINES */}
               {activeTab === 'contacts' && (
                 <div className="space-y-6">
-                  <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
-                    <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
+                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-xs">
+                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                       Direct Emergency Response Dispatch
                     </span>
-                    <h3 className="text-base sm:text-lg font-bold text-white mt-1">
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900 mt-1">
                       Disaster Relief Helplines &amp; Authorities
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-300 mt-1">
+                    <p className="text-xs sm:text-sm text-slate-600 mt-1">
                       Official 24/7 disaster response helplines active for {targetCity}, {targetState}. Tap any contact to dial directly.
                     </p>
                   </div>
@@ -1216,15 +1216,15 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                     ].map((auth, idx) => (
                       <div 
                         key={idx}
-                        className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between gap-3 hover:border-slate-700 transition-colors"
+                        className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-3 hover:border-slate-300 transition-colors shadow-xs"
                       >
                         <div className="min-w-0">
-                          <span className="text-xs font-bold text-white block truncate">{auth.agency}</span>
-                          <span className="text-[11px] text-slate-400 block mt-0.5">{auth.role}</span>
+                          <span className="text-xs font-bold text-slate-900 block truncate">{auth.agency}</span>
+                          <span className="text-[11px] text-slate-500 block mt-0.5">{auth.role}</span>
                         </div>
                         <a 
                           href={`tel:${auth.contact.replace(/\s+/g, '')}`}
-                          className="px-3 py-2 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-400 font-mono font-bold text-xs shrink-0 transition-all flex items-center gap-1.5"
+                          className="px-3 py-2 rounded-lg bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 font-mono font-bold text-xs shrink-0 transition-all flex items-center gap-1.5"
                         >
                           <PhoneCall className="w-3.5 h-3.5" />
                           <span>{auth.contact}</span>
@@ -1234,13 +1234,13 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                   </div>
 
                   {/* Safe assembly zone */}
-                  <div className="p-4 rounded-xl bg-slate-950/90 border border-slate-800 flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                  <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 flex items-start gap-3 shadow-xs">
+                    <MapPin className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
                     <div>
-                      <span className="text-xs font-bold text-slate-200 uppercase tracking-wider block">
+                      <span className="text-xs font-bold text-emerald-900 uppercase tracking-wider block">
                         Designated Safe Muster &amp; Relief Shelter
                       </span>
-                      <p className="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-emerald-800 mt-1 leading-relaxed">
                         {guide?.safeAssemblyZone || `Municipal Sports Stadium or concrete Community Centre situated on stable ridge spur at ~${targetElevation + 40}m ASL.`}
                       </p>
                     </div>
@@ -1254,8 +1254,8 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
         </div>
 
         {/* Modal Bottom Footer */}
-        <div className="px-5 py-3.5 bg-slate-950 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3 shrink-0">
-          <div className="flex items-center gap-2 text-[11px] text-slate-500">
+        <div className="px-5 py-3.5 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 shrink-0">
+          <div className="flex items-center gap-2 text-[11px] text-slate-500 font-medium">
             <span>Model: {analysis?.generatedByModel || 'Gemini 3.8 Flash (AI Geotechnical)'}</span>
             <span>•</span>
             <span>Updated: {analysis?.lastUpdated || new Date().toLocaleTimeString()}</span>
@@ -1265,14 +1265,14 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
             <button
               onClick={handleCopyFullReport}
               disabled={isLoading || !analysis}
-              className="px-3 py-1.5 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors flex items-center gap-1.5 disabled:opacity-50"
+              className="px-3 py-1.5 text-xs font-semibold bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-lg transition-colors flex items-center gap-1.5 disabled:opacity-50 shadow-xs"
             >
-              {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+              {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-slate-600" />}
               <span>{copied ? 'Copied' : 'Copy Full Dossier'}</span>
             </button>
             <button
               onClick={onClose}
-              className="px-4 py-1.5 text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition-colors shadow-sm"
+              className="px-4 py-1.5 text-xs font-semibold bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors shadow-xs"
             >
               Close
             </button>

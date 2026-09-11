@@ -110,25 +110,25 @@ Citizen Field Note: ${userNote || 'Elevated debris flow risk reported.'}`;
   };
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-slate-950/80 backdrop-blur-sm animate-fade-in">
-      <div className="bg-slate-900 border border-rose-500/50 rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden shadow-rose-950/40">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-slate-900/50 backdrop-blur-xs animate-fade-in">
+      <div className="bg-white border border-slate-200 rounded-3xl w-full max-w-2xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
         
         {/* Header */}
-        <div className="px-5 py-4 bg-gradient-to-r from-rose-950/90 via-slate-900 to-slate-900 border-b border-slate-800 flex items-center justify-between">
+        <div className="px-6 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-400">
+            <div className="p-2.5 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700">
               <ShieldAlert className="w-5 h-5 animate-pulse" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                <h3 className="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">
                   Emergency Authority Warning Console
                 </h3>
-                <span className="text-[10px] px-2 py-0.5 rounded bg-rose-600 font-bold text-white uppercase">
+                <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-rose-600 font-extrabold text-white uppercase tracking-wider">
                   Score: {score}/100
                 </span>
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-500 mt-0.5">
                 Official transmission to SDMA, NDRF, and District Disaster Management
               </p>
             </div>
@@ -136,61 +136,61 @@ Citizen Field Note: ${userNote || 'Elevated debris flow risk reported.'}`;
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Modal Body */}
-        <div className="p-5 overflow-y-auto space-y-4 text-xs sm:text-sm">
+        <div className="p-6 overflow-y-auto space-y-4 text-xs sm:text-sm">
           
           {dispatchReceipt ? (
             /* SUCCESS CONFIRMATION RECEIPT */
             <div className="space-y-4 text-center py-4 animate-fade-in">
-              <div className="w-16 h-16 bg-emerald-500/20 border border-emerald-500/50 rounded-full flex items-center justify-center mx-auto text-emerald-400">
+              <div className="w-16 h-16 bg-emerald-50 border border-emerald-200 rounded-full flex items-center justify-center mx-auto text-emerald-700 shadow-xs">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
 
               <div>
-                <h4 className="text-lg font-bold text-white">
+                <h4 className="text-lg font-extrabold text-slate-900">
                   Warning Successfully Transmitted!
                 </h4>
-                <p className="text-xs text-slate-400 mt-1 max-w-md mx-auto">
+                <p className="text-xs text-slate-600 mt-1 max-w-md mx-auto">
                   Your alert was logged and broadcasted across the State Disaster Telemetry System. First responders have been notified.
                 </p>
               </div>
 
               {/* Receipt card */}
-              <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-left max-w-md mx-auto space-y-2 font-mono text-xs">
-                <div className="flex justify-between text-slate-400 border-b border-slate-800/80 pb-1.5">
+              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-left max-w-md mx-auto space-y-2 font-mono text-xs shadow-xs">
+                <div className="flex justify-between text-slate-500 border-b border-slate-200 pb-2">
                   <span>Receipt ID:</span>
-                  <span className="text-emerald-400 font-bold">{dispatchReceipt.receiptId}</span>
+                  <span className="text-emerald-700 font-bold">{dispatchReceipt.receiptId}</span>
                 </div>
-                <div className="flex justify-between text-slate-400 border-b border-slate-800/80 pb-1.5">
+                <div className="flex justify-between text-slate-500 border-b border-slate-200 pb-2">
                   <span>Alert Code:</span>
-                  <span className="text-white">{dispatchReceipt.alertId}</span>
+                  <span className="text-slate-900 font-semibold">{dispatchReceipt.alertId}</span>
                 </div>
-                <div className="flex justify-between text-slate-400 border-b border-slate-800/80 pb-1.5">
+                <div className="flex justify-between text-slate-500 border-b border-slate-200 pb-2">
                   <span>Target Station:</span>
-                  <span className="text-white">{dispatchReceipt.city}, {dispatchReceipt.state}</span>
+                  <span className="text-slate-900 font-semibold">{dispatchReceipt.city}, {dispatchReceipt.state}</span>
                 </div>
-                <div className="flex justify-between text-slate-400 border-b border-slate-800/80 pb-1.5">
+                <div className="flex justify-between text-slate-500 border-b border-slate-200 pb-2">
                   <span>Dispatched At:</span>
-                  <span className="text-white">{dispatchReceipt.formattedLocalTime}</span>
+                  <span className="text-slate-900 font-semibold">{dispatchReceipt.formattedLocalTime}</span>
                 </div>
-                <div className="flex justify-between text-slate-400">
+                <div className="flex justify-between text-slate-500">
                   <span>Channel:</span>
-                  <span className="text-sky-400">Disaster Telemetry &amp; SMS Grid</span>
+                  <span className="text-emerald-700 font-semibold">Disaster Telemetry &amp; SMS Grid</span>
                 </div>
               </div>
 
               {/* Agencies notified */}
-              <div className="bg-slate-900 border border-slate-800 p-3 rounded-lg max-w-md mx-auto text-left">
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+              <div className="bg-slate-50 border border-slate-200 p-4 rounded-2xl max-w-md mx-auto text-left shadow-xs">
+                <span className="text-[11px] font-bold text-slate-700 uppercase tracking-wider block mb-1.5">
                   Agencies Acknowledged:
                 </span>
-                <ul className="text-xs text-slate-300 space-y-1 list-disc list-inside">
+                <ul className="text-xs text-slate-600 space-y-1 list-disc list-inside">
                   {authorityWarning.targetAgencies.map((agency, i) => (
                     <li key={i}>{agency}</li>
                   ))}
@@ -198,18 +198,18 @@ Citizen Field Note: ${userNote || 'Elevated debris flow risk reported.'}`;
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap justify-center gap-2 pt-2">
+              <div className="flex flex-wrap justify-center gap-2.5 pt-2">
                 <button
                   onClick={handleCopyReport}
-                  className="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold flex items-center gap-1.5"
+                  className="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs font-bold flex items-center gap-2 transition-colors shadow-xs"
                 >
-                  {isCopied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                  {isCopied ? <Check className="w-4 h-4 text-emerald-700" /> : <Copy className="w-4 h-4" />}
                   <span>{isCopied ? 'Copied to Clipboard' : 'Copy Incident Report'}</span>
                 </button>
 
                 <a
                   href="tel:112"
-                  className="px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-md shadow-rose-600/30"
+                  className="px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold flex items-center gap-2 shadow-xs transition-colors"
                 >
                   <PhoneCall className="w-4 h-4" />
                   <span>Call Emergency 112</span>
@@ -220,58 +220,58 @@ Citizen Field Note: ${userNote || 'Elevated debris flow risk reported.'}`;
             /* DISPATCH COMPOSITION FORM */
             <>
               {/* Telemetry Payload Card */}
-              <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
-                <div className="flex items-center justify-between border-b border-slate-800/80 pb-2">
-                  <span className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
-                    <Radio className="w-3.5 h-3.5 text-sky-400" />
+              <div className="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200 space-y-3 shadow-xs">
+                <div className="flex items-center justify-between border-b border-slate-200 pb-2.5">
+                  <span className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-2">
+                    <Radio className="w-4 h-4 text-emerald-700" />
                     Automated Telemetry Payload
                   </span>
-                  <span className="text-[11px] font-mono text-rose-400 font-bold">
+                  <span className="text-[11px] font-mono text-rose-600 font-bold">
                     PRIORITY: RED ALERT
                   </span>
                 </div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs">
-                  <div className="bg-slate-900 p-2 rounded-lg border border-slate-800">
-                    <span className="text-[10px] text-slate-400 block uppercase">Location</span>
-                    <span className="font-bold text-white">{city}, {state}</span>
+                  <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-xs">
+                    <span className="text-[10px] text-slate-500 block uppercase font-medium">Location</span>
+                    <span className="font-bold text-slate-900">{city}, {state}</span>
                   </div>
-                  <div className="bg-slate-900 p-2 rounded-lg border border-slate-800">
-                    <span className="text-[10px] text-slate-400 block uppercase">Risk Score</span>
-                    <span className="font-bold text-rose-400 font-mono">{score}/100</span>
+                  <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-xs">
+                    <span className="text-[10px] text-slate-500 block uppercase font-medium">Risk Score</span>
+                    <span className="font-bold text-rose-600 font-mono text-sm">{score}/100</span>
                   </div>
-                  <div className="bg-slate-900 p-2 rounded-lg border border-slate-800">
-                    <span className="text-[10px] text-slate-400 block uppercase">Rainfall Rate</span>
-                    <span className="font-bold text-sky-400 font-mono">{weather.precip} mm</span>
+                  <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-xs">
+                    <span className="text-[10px] text-slate-500 block uppercase font-medium">Rainfall Rate</span>
+                    <span className="font-bold text-sky-700 font-mono text-sm">{weather.precip} mm</span>
                   </div>
-                  <div className="bg-slate-900 p-2 rounded-lg border border-slate-800 sm:col-span-2">
-                    <span className="text-[10px] text-slate-400 block uppercase">Tectonic Fault</span>
-                    <span className="font-medium text-slate-200">{tectonicData.faultLine}</span>
+                  <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-xs sm:col-span-2">
+                    <span className="text-[10px] text-slate-500 block uppercase font-medium">Tectonic Fault</span>
+                    <span className="font-semibold text-slate-800">{tectonicData.faultLine}</span>
                   </div>
-                  <div className="bg-slate-900 p-2 rounded-lg border border-slate-800">
-                    <span className="text-[10px] text-slate-400 block uppercase">Vibration (PGA)</span>
-                    <span className="font-bold text-amber-400 font-mono">{tectonicData.vibrationGal} Gal</span>
+                  <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-xs">
+                    <span className="text-[10px] text-slate-500 block uppercase font-medium">Vibration (PGA)</span>
+                    <span className="font-bold text-amber-700 font-mono text-sm">{tectonicData.vibrationGal} Gal</span>
                   </div>
                 </div>
 
-                <div className="bg-slate-900/60 p-2.5 rounded-lg border border-slate-800 text-xs text-slate-300">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-0.5">
+                <div className="bg-white p-3 rounded-xl border border-slate-200 text-xs text-slate-700 shadow-xs">
+                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
                     Recommended Agency Directive:
                   </span>
-                  <p className="leading-relaxed">{authorityWarning.recommendedAction}</p>
+                  <p className="leading-relaxed font-medium">{authorityWarning.recommendedAction}</p>
                 </div>
               </div>
 
               {/* Designated Recipient Authorities */}
-              <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2">
-                <span className="text-xs font-bold text-slate-300 uppercase tracking-wider block">
+              <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2.5 shadow-xs">
+                <span className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
                   Designated Recipient Authorities:
                 </span>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-2">
                   {authorityWarning.targetAgencies.map((agency, i) => (
                     <span
                       key={i}
-                      className="px-2.5 py-1 rounded-md text-[11px] bg-slate-900 text-slate-200 border border-slate-700 font-medium"
+                      className="px-3 py-1.5 rounded-xl text-xs bg-white text-slate-800 border border-slate-200 font-semibold shadow-xs"
                     >
                       ✓ {agency}
                     </span>
@@ -281,28 +281,28 @@ Citizen Field Note: ${userNote || 'Elevated debris flow risk reported.'}`;
 
               {/* Optional Field Observation Note */}
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-300 block">
+                <label className="text-xs font-bold text-slate-700 block">
                   Add Citizen / Local Observer Field Note (Optional):
                 </label>
                 <textarea
                   value={userNote}
                   onChange={(e) => setUserNote(e.target.value)}
                   placeholder="e.g., Road cracks noticed near Kilometer 12; brown water overflowing highway ditch."
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-rose-500 h-20 resize-none"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-emerald-600 focus:bg-white h-20 resize-none transition-colors"
                 />
               </div>
 
               {/* Transmit Action */}
-              <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-800">
-                <div className="flex items-center gap-1.5 text-xs text-slate-400">
-                  <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
+              <div className="pt-3 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-200">
+                <div className="flex items-center gap-2 text-xs text-slate-600">
+                  <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
                   <span>Immediate broadcast to National Disaster Command</span>
                 </div>
 
                 <div className="flex items-center gap-2 w-full sm:w-auto">
                   <button
                     onClick={onClose}
-                    className="px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex-1 sm:flex-none text-center"
+                    className="px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 flex-1 sm:flex-none text-center transition-colors"
                   >
                     Cancel
                   </button>
@@ -310,7 +310,7 @@ Citizen Field Note: ${userNote || 'Elevated debris flow risk reported.'}`;
                   <button
                     onClick={handleSendDispatch}
                     disabled={isSending}
-                    className="px-5 py-2 rounded-lg text-xs font-bold bg-rose-600 hover:bg-rose-500 text-white shadow-lg shadow-rose-600/30 flex items-center justify-center gap-2 flex-1 sm:flex-none disabled:opacity-50"
+                    className="px-5 py-2.5 rounded-xl text-xs font-bold bg-rose-600 hover:bg-rose-700 text-white shadow-xs flex items-center justify-center gap-2 flex-1 sm:flex-none disabled:opacity-50 transition-colors"
                   >
                     {isSending ? (
                       <>

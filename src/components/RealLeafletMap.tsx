@@ -59,29 +59,29 @@ export const RealLeafletMap: React.FC<RealLeafletMapProps> = ({ station }) => {
 
     // Build friendly popup HTML with real Weatherstack data
     const popupContent = `
-      <div style="font-family: sans-serif; padding: 4px; min-width: 170px;">
-        <div style="font-weight: 700; font-size: 14px; margin-bottom: 2px; color: #ffffff;">
+      <div style="font-family: sans-serif; padding: 6px; min-width: 180px; color: #0f172a;">
+        <div style="font-weight: 800; font-size: 14px; margin-bottom: 2px; color: #0f172a;">
           ${station.location.name}
         </div>
-        <div style="font-size: 11px; color: #94a3b8; margin-bottom: 8px;">
+        <div style="font-size: 11px; color: #64748b; margin-bottom: 8px;">
           ${station.location.region}, India
         </div>
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-          <img src="${station.weather.weather_icons?.[0] || ''}" style="width: 28px; height: 28px; border-radius: 4px;" alt="weather" />
+          <img src="${station.weather.weather_icons?.[0] || ''}" style="width: 32px; height: 32px; border-radius: 6px;" alt="weather" />
           <div>
-            <div style="font-size: 16px; font-weight: 800; color: #38bdf8;">
+            <div style="font-size: 16px; font-weight: 800; color: #0f172a;">
               ${station.weather.temperature}°C
             </div>
-            <div style="font-size: 11px; color: #cbd5e1;">
+            <div style="font-size: 11px; color: #475569; font-weight: 600;">
               ${station.weather.weather_descriptions?.[0] || ''}
             </div>
           </div>
         </div>
-        <div style="border-top: 1px solid #334155; padding-top: 6px; font-size: 11px; display: flex; justify-content: space-between; color: #e2e8f0;">
+        <div style="border-top: 1px solid #e2e8f0; padding-top: 6px; font-size: 11px; display: flex; justify-content: space-between; color: #334155;">
           <span>Rainfall: <b>${station.weather.precip} mm</b></span>
           <span>Humidity: <b>${station.weather.humidity}%</b></span>
         </div>
-        <div style="margin-top: 6px; font-size: 10px; font-weight: 700; text-transform: uppercase; color: ${station.risk.colorHex};">
+        <div style="margin-top: 6px; font-size: 11px; font-weight: 800; text-transform: uppercase; color: ${station.risk.score > 50 ? '#e11d48' : '#047857'};">
           Threat: ${station.risk.statusTitle}
         </div>
       </div>
@@ -114,54 +114,54 @@ export const RealLeafletMap: React.FC<RealLeafletMapProps> = ({ station }) => {
   };
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-xl flex flex-col relative isolate z-0">
+    <div className="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-xs flex flex-col relative isolate z-0">
       
       {/* Map Header */}
-      <div className="p-3.5 bg-slate-900 border-b border-slate-800 flex flex-wrap items-center justify-between gap-2">
+      <div className="p-4 bg-white border-b border-slate-200 flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <Layers className="w-4 h-4 text-sky-400" />
-          <h3 className="font-bold text-sm text-white">
-            Geographic Location & Road Network Map
+          <Layers className="w-4 h-4 text-emerald-700" />
+          <h3 className="font-extrabold text-sm text-slate-900">
+            Geographic Location &amp; Road Network Map
           </h3>
-          <span className="text-[11px] text-slate-400 hidden sm:inline">
-            (OpenStreetMap Real Satellite/Road Tiles)
+          <span className="text-[11px] text-slate-500 font-medium hidden sm:inline">
+            (OpenStreetMap Real Satellite/Road Network)
           </span>
         </div>
 
         <div className="flex items-center gap-2 text-xs">
           <button
             onClick={handleRecenter}
-            className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 font-semibold transition-colors"
             title="Recenter on city location"
           >
-            <Navigation className="w-3 h-3 text-sky-400" />
+            <Navigation className="w-3.5 h-3.5 text-emerald-700" />
             <span>Center on {station.city}</span>
           </button>
         </div>
       </div>
 
       {/* Map Body Container */}
-      <div className="relative w-full h-[360px] sm:h-[420px] bg-slate-950">
+      <div className="relative w-full h-[360px] sm:h-[420px] bg-slate-100">
         <div ref={mapContainerRef} className="w-full h-full" />
 
         {/* Floating coordinates badge */}
-        <div className="absolute bottom-3 left-3 z-10 bg-slate-900/90 border border-slate-700/80 backdrop-blur-md px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[11px] sm:text-xs text-slate-300 shadow-lg flex items-center gap-2 pointer-events-auto max-w-[calc(100%-24px)] truncate">
-          <Compass className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+        <div className="absolute bottom-3 left-3 z-10 bg-white/95 border border-slate-200/90 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs text-slate-700 shadow-md flex items-center gap-2 pointer-events-auto max-w-[calc(100%-24px)] truncate font-medium">
+          <Compass className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
           <span className="truncate">
-            {station.city}: <strong className="text-white">{lat.toFixed(3)}°N, {lon.toFixed(3)}°E</strong>
+            {station.city}: <strong className="text-slate-900">{lat.toFixed(3)}°N, {lon.toFixed(3)}°E</strong>
           </span>
         </div>
 
         {/* Floating live weather overlay */}
-        <div className="absolute top-3 right-3 z-10 bg-slate-900/90 border border-slate-700/80 backdrop-blur-md px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[11px] sm:text-xs text-slate-200 shadow-lg flex items-center gap-2 pointer-events-auto">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping shrink-0" />
+        <div className="absolute top-3 right-3 z-10 bg-white/95 border border-slate-200/90 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs text-slate-700 shadow-md flex items-center gap-2 pointer-events-auto font-medium">
+          <span className="w-2 h-2 rounded-full bg-emerald-600 animate-ping shrink-0" />
           <span className="hidden sm:inline">Live Coordinates from Weatherstack</span>
           <span className="sm:hidden">Live Radar GPS</span>
         </div>
       </div>
 
       {/* Map Footer Note */}
-      <div className="p-2.5 bg-slate-950 border-t border-slate-800 text-[11px] text-slate-400 flex items-center justify-between px-4">
+      <div className="p-3 bg-slate-50 border-t border-slate-200 text-[11px] text-slate-500 font-medium flex items-center justify-between px-4">
         <span>Map shows real roads, rivers, and elevation contours around {station.city}, {station.state}.</span>
         <span className="hidden sm:inline">Zoom or pan to explore nearby mountain routes</span>
       </div>

@@ -8,7 +8,8 @@ import {
   Languages,
   Shield,
   Sparkles,
-  ChevronDown
+  ChevronDown,
+  Mountain
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -33,22 +34,29 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-3">
           
-          {/* Brand & Identity (matching GramBiz AI green brand icon and title) */}
+          {/* Brand & Identity: NER-LEWS (Smart India Hackathon 2026 - PS-26001) */}
           <div className="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-700 flex items-center justify-center text-white font-extrabold text-lg sm:text-xl shadow-xs shrink-0 select-none">
-              L
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-700 flex items-center justify-center text-white shadow-xs shrink-0 select-none">
+              <Mountain className="w-5 h-5 text-white" />
             </div>
             <div className="truncate">
               <div className="flex items-center gap-2">
                 <span className="font-extrabold text-base sm:text-xl text-slate-900 tracking-tight truncate">
-                  Landslide AI
+                  NER-LEWS
+                </span>
+                <span className="hidden md:inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 shrink-0">
+                  SIH 2026 • PS-26001
                 </span>
                 <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
                   <Radio className="w-3 h-3 animate-pulse text-emerald-600" />
-                  Live Sensor Network
+                  AI Early Warning System
                 </span>
               </div>
               <div className="flex items-center gap-1.5 text-xs text-slate-500 mt-0.5 truncate">
+                <span className="text-slate-600 font-semibold truncate hidden sm:inline">
+                  AI Landslide Risk Monitoring (NER)
+                </span>
+                <span className="hidden sm:inline text-slate-300">•</span>
                 <MapPin className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
                 <span className="font-medium text-slate-700 truncate">
                   {currentCity}, {currentState}

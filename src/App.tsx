@@ -311,19 +311,23 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           <div className="flex items-center justify-center sm:justify-start gap-2">
             <ShieldCheck className="w-4 h-4 text-emerald-700" />
-            <span className="text-slate-700 font-semibold">
-              Himalayan &amp; Western Ghats Landslide Early Warning System
+            <span className="text-slate-800 font-bold">
+              NER-LEWS • AI-Based Early Warning &amp; Landslide Risk Monitoring System in NER
             </span>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 text-slate-500 text-[11px] font-medium">
-            <span>1-100 Risk Score Engine</span>
+          <div className="flex flex-wrap items-center justify-center gap-2.5 text-slate-500 text-[11px] font-medium">
+            <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-semibold border border-slate-200">
+              SIH 2026 • PS-26001
+            </span>
             <span>·</span>
-            <span>Tectonic &amp; Seismic Telemetry</span>
+            <span>Team Debuggers</span>
             <span>·</span>
-            <span>Weatherstack Live Precipitation</span>
+            <span>0-100 Multi-Source AI Risk Engine</span>
             <span>·</span>
-            <span>NDRF &amp; SDMA Authority Dispatch</span>
+            <span>IMD &amp; Seismic Telemetry</span>
+            <span>·</span>
+            <span>SDMA &amp; NDRF Dispatch</span>
           </div>
         </div>
       </footer>

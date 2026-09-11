@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { 
   X, 
   Sparkles, 
@@ -23,7 +23,9 @@ import {
   AlertCircle,
   Eye,
   Shield,
-  LifeBuoy
+  LifeBuoy,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { AiAnalysisResult, RealStationData } from '../types';
 
@@ -47,7 +49,59 @@ export const AiAnalysisModal: React.FC<AiAnalysisModalProps> = ({
   stationData,
 }) => {
   const [copied, setCopied] = useState(false);
-  const [activeTab, setActiveTab] = useState<'overview' | 'telemetry' | 'geology' | 'critical'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'telemetry' | 'geology' | 'critical' | 'precautions' | 'contacts'>('overview');
+  
+  // Options sideways scrolling state & ref
+  const tabsContainerRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  // Check scroll boundary to enable/disable left and right options scroll buttons
+  const checkScroll = useCallback(() => {
+    const el = tabsContainerRef.current;
+    if (el) {
+      const hasOverflow = el.scrollWidth > el.clientWidth;
+      setCanScrollLeft(el.scrollLeft > 6);
+      setCanScrollRight(hasOverflow && el.scrollLeft < el.scrollWidth - el.clientWidth - 6);
+    }
+  }, []);
+
+  // Sideways scroll function for the options buttons
+  const scrollTabs = (direction: 'left' | 'right') => {
+    const el = tabsContainerRef.current;
+    if (el) {
+      const scrollDistance = 220;
+      el.scrollBy({
+        left: direction === 'left' ? -scrollDistance : scrollDistance,
+        behavior: 'smooth'
+      });
+      setTimeout(checkScroll, 280);
+    }
+  };
+
+  useEffect(() => {
+    const el = tabsContainerRef.current;
+    if (!el || !isOpen) return;
+
+    checkScroll();
+
+    // Wheel event to scroll sideways on the options bar
+    const handleWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && e.deltaY !== 0) {
+        e.preventDefault();
+        el.scrollLeft += e.deltaY;
+        checkScroll();
+      }
+    };
+
+    el.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('resize', checkScroll);
+
+    return () => {
+      el.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('resize', checkScroll);
+    };
+  }, [isOpen, checkScroll]);
 
   if (!isOpen) return null;
 
@@ -143,32 +197,32 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
   };
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-md overflow-y-auto">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-2 sm:p-4 bg-slate-950/85 backdrop-blur-md overflow-hidden">
       <div 
-        className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl shadow-2xl overflow-hidden my-6 flex flex-col max-h-[92vh]"
+        className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col h-[94vh] max-h-[94vh]"
         role="dialog"
         aria-modal="true"
       >
         
         {/* Modal Top Header */}
-        <div className="px-5 py-4 bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 shrink-0">
-          <div className="flex items-center gap-3">
+        <div className="px-5 py-3.5 sm:py-4 bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 shrink-0">
+          <div className="flex items-center gap-3 min-w-0">
             <div className="w-9 h-9 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shrink-0">
               <Sparkles className="w-5 h-5" />
             </div>
-            <div>
+            <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <h3 className="font-bold text-base sm:text-lg text-white tracking-tight">
+                <h3 className="font-bold text-base sm:text-lg text-white tracking-tight truncate">
                   AI Landslide Analysis &amp; Telemetry Dossier
                 </h3>
-                <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">
+                <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 shrink-0">
                   <Radio className="w-3 h-3 text-indigo-400 animate-pulse" />
-                  Gemini 3.8 Flash Engine
+                  Gemini 3.8 Flash
                 </span>
               </div>
               <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400 mt-0.5">
                 <span className="flex items-center gap-1 text-slate-300 font-medium">
-                  <MapPin className="w-3.5 h-3.5 text-sky-400" />
+                  <MapPin className="w-3.5 h-3.5 text-sky-400 shrink-0" />
                   {targetCity}, {targetState}
                 </span>
                 <span>•</span>
@@ -179,7 +233,7 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={handleCopyFullReport}
               disabled={isLoading || !analysis}
@@ -209,68 +263,146 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
           </div>
         </div>
 
-        {/* Navigation Tabs for Easy Deep-Dive */}
-        <div className="px-5 py-2.5 bg-slate-950/60 border-b border-slate-800 flex items-center gap-2 overflow-x-auto shrink-0 text-xs">
+        {/* Options Row with Sideways Scroll Functions & Hidden Scrollbars */}
+        <div className="relative bg-slate-950/80 border-b border-slate-800 flex items-center shrink-0 px-2 sm:px-3 py-1.5">
+          
+          {/* Scroll Options Left Button */}
           <button
-            onClick={() => setActiveTab('overview')}
-            className={`px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap transition-colors flex items-center gap-1.5 ${
-              activeTab === 'overview'
-                ? 'bg-indigo-600 text-white shadow-sm'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+            type="button"
+            onClick={() => scrollTabs('left')}
+            disabled={!canScrollLeft}
+            title="Scroll options left"
+            aria-label="Scroll options to the left"
+            className={`p-1.5 rounded-lg transition-all shrink-0 mr-1.5 flex items-center justify-center ${
+              canScrollLeft
+                ? 'bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 shadow-sm cursor-pointer active:scale-95'
+                : 'text-slate-600 bg-slate-900/40 border border-slate-800/50 opacity-30 cursor-not-allowed'
             }`}
           >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Overview &amp; Road Status</span>
+            <ChevronLeft className="w-4 h-4" />
           </button>
 
-          <button
-            onClick={() => setActiveTab('critical')}
-            className={`px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap transition-colors flex items-center gap-1.5 ${
-              isCritical
-                ? activeTab === 'critical'
-                  ? 'bg-rose-600 text-white shadow-sm'
-                  : 'text-rose-400 bg-rose-500/10 border border-rose-500/30'
-                : activeTab === 'critical'
-                ? 'bg-indigo-600 text-white'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
-            }`}
-          >
-            <ShieldAlert className={`w-3.5 h-3.5 ${isCritical ? 'text-rose-400' : ''}`} />
-            <span>Critical Guide &amp; Evacuation</span>
-            {isCritical && (
-              <span className="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-rose-500 text-white animate-pulse">
-                ALERT
-              </span>
-            )}
-          </button>
+          {/* Left shadow fade cue */}
+          {canScrollLeft && (
+            <div className="pointer-events-none absolute left-8 sm:left-10 top-0 bottom-0 w-4 bg-gradient-to-r from-slate-950 to-transparent z-10" />
+          )}
 
-          <button
-            onClick={() => setActiveTab('telemetry')}
-            className={`px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap transition-colors flex items-center gap-1.5 ${
-              activeTab === 'telemetry'
-                ? 'bg-indigo-600 text-white shadow-sm'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
-            }`}
+          {/* Options Container: Hidden scrollbars with smooth sideways scrolling */}
+          <div
+            ref={tabsContainerRef}
+            onScroll={checkScroll}
+            className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth flex-1 py-1 text-xs select-none"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            <Activity className="w-3.5 h-3.5" />
-            <span>Reading Location Telemetry</span>
-          </button>
+            <button
+              onClick={() => setActiveTab('overview')}
+              className={`px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
+                activeTab === 'overview'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Overview &amp; Road Status</span>
+            </button>
 
+            <button
+              onClick={() => setActiveTab('critical')}
+              className={`px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
+                isCritical
+                  ? activeTab === 'critical'
+                    ? 'bg-rose-600 text-white shadow-md shadow-rose-600/30'
+                    : 'text-rose-400 bg-rose-500/10 border border-rose-500/30'
+                  : activeTab === 'critical'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+              }`}
+            >
+              <ShieldAlert className={`w-3.5 h-3.5 ${isCritical ? 'text-rose-400' : ''}`} />
+              <span>Critical Guide &amp; Evacuation</span>
+              {isCritical && (
+                <span className="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-rose-500 text-white animate-pulse">
+                  ALERT
+                </span>
+              )}
+            </button>
+
+            <button
+              onClick={() => setActiveTab('telemetry')}
+              className={`px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
+                activeTab === 'telemetry'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+              }`}
+            >
+              <Activity className="w-3.5 h-3.5" />
+              <span>Reading Location Telemetry</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('geology')}
+              className={`px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
+                activeTab === 'geology'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+              }`}
+            >
+              <Layers className="w-3.5 h-3.5" />
+              <span>AI Geological Explanation</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('precautions')}
+              className={`px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
+                activeTab === 'precautions'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+              }`}
+            >
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Safety &amp; Go-Bag Checklist</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('contacts')}
+              className={`px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0 ${
+                activeTab === 'contacts'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+              }`}
+            >
+              <PhoneCall className="w-3.5 h-3.5 text-rose-400" />
+              <span>Emergency Contacts &amp; Helplines</span>
+            </button>
+          </div>
+
+          {/* Right shadow fade cue */}
+          {canScrollRight && (
+            <div className="pointer-events-none absolute right-8 sm:right-10 top-0 bottom-0 w-4 bg-gradient-to-l from-slate-950 to-transparent z-10" />
+          )}
+
+          {/* Scroll Options Right Button */}
           <button
-            onClick={() => setActiveTab('geology')}
-            className={`px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap transition-colors flex items-center gap-1.5 ${
-              activeTab === 'geology'
-                ? 'bg-indigo-600 text-white shadow-sm'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+            type="button"
+            onClick={() => scrollTabs('right')}
+            disabled={!canScrollRight}
+            title="Scroll options right"
+            aria-label="Scroll options to the right"
+            className={`p-1.5 rounded-lg transition-all shrink-0 ml-1.5 flex items-center justify-center ${
+              canScrollRight
+                ? 'bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 shadow-sm cursor-pointer active:scale-95'
+                : 'text-slate-600 bg-slate-900/40 border border-slate-800/50 opacity-30 cursor-not-allowed'
             }`}
           >
-            <Layers className="w-3.5 h-3.5" />
-            <span>AI Geological Explanation</span>
+            <ChevronRight className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Modal Scrollable Content Body */}
-        <div className="p-5 sm:p-6 overflow-y-auto space-y-6">
+        {/* Modal Scrollable Content Body with NO side scrollbars */}
+        <div 
+          className="p-4 sm:p-6 overflow-y-auto no-scrollbar space-y-6 flex-1"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           
           {isLoading ? (
             <div className="py-16 flex flex-col items-center justify-center space-y-3 text-center">
@@ -958,6 +1090,161 @@ ${(guide?.sensoryWarningSigns || []).map((s) => `  * ${s}`).join('\n')}
                     </div>
                   </div>
 
+                </div>
+              )}
+
+              {/* TAB 5: PRECAUTIONS & EMERGENCY GO-BAG CHECKLIST */}
+              {activeTab === 'precautions' && (
+                <div className="space-y-6">
+                  {/* Header summary */}
+                  <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                    <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
+                      Citizen Safety &amp; Preparedness Directives
+                    </span>
+                    <h3 className="text-base sm:text-lg font-bold text-white mt-1">
+                      Immediate Safety Precautions &amp; Go-Bag Checklist
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-300 mt-1">
+                      Actionable protocols and essential survival provisions for residents and travelers in {targetCity}, {targetState}.
+                    </p>
+                  </div>
+
+                  {/* Immediate Safety Precautions */}
+                  <div className="space-y-2.5">
+                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Immediate Safety Precautions</span>
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {(analysis?.keyPrecautions || [
+                        "Avoid travelling along vulnerable landslide-prone highway corridors and ghat cuttings.",
+                        "Clear residential roof drains and perimeter stormwater channels of silt and debris.",
+                        "Inspect hillside retaining walls, slope toe masonry, and surface ground for newly forming cracks.",
+                        "Charge mobile devices, flashlights, and backup power banks immediately.",
+                        "Ensure family members and neighbors are briefed on high-ground evacuation assembly routes.",
+                        "Keep emergency contacts (112, 1070) pre-programmed in phone speed dials."
+                      ]).map((precaution, idx) => (
+                        <div
+                          key={idx}
+                          className="p-3 rounded-lg bg-slate-950/70 border border-slate-800 flex items-start gap-2.5 text-xs text-slate-200"
+                        >
+                          <span className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
+                            {idx + 1}
+                          </span>
+                          <span>{precaution}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Rapid Evacuation "Go-Bag" Checklist */}
+                  <div className="space-y-2">
+                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                      <Shield className="w-3.5 h-3.5 text-indigo-400" />
+                      <span>Rapid Evacuation &ldquo;Go-Bag&rdquo; Essential Checklist</span>
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {(guide?.essentialGoBagChecklist || [
+                        "Potable drinking water (3 liters per person minimum) & purification tablets",
+                        "High-calorie non-perishable rations (energy bars, dry fruit, biscuits)",
+                        "Waterproof LED headlamp/torch with spare batteries & high-decibel whistle",
+                        "Compact first-aid kit with personal prescription medicines & antiseptic wipes",
+                        "Government ID cards, property papers, and cash sealed in waterproof ziplock bags",
+                        "Foil emergency survival thermal blanket and durable rain poncho",
+                      ]).map((item, idx) => (
+                        <div 
+                          key={idx}
+                          className="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-950/50 border border-slate-800 text-xs text-slate-300"
+                        >
+                          <CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0" />
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Sensory Warning Signs */}
+                  <div className="space-y-2">
+                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                      <Eye className="w-3.5 h-3.5 text-amber-400" />
+                      <span>Physical &amp; Sensory Failure Indicators to Watch</span>
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {(guide?.sensoryWarningSigns || [
+                        "New tension fractures appearing in paved roads, stone retaining walls, or home masonry.",
+                        "Trees, fence posts, or utility poles suddenly tilting uphill or downhill.",
+                        "Clear mountain springs or runoff streams turning abruptly muddy or drying up without explanation.",
+                        "Deep subterranean rumbling, popping noises, or cracking tree trunks echoing through the valley.",
+                      ]).map((sign, idx) => (
+                        <div 
+                          key={idx}
+                          className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-950/60 border border-slate-800 text-xs text-slate-300"
+                        >
+                          <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                          <span>{sign}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                </div>
+              )}
+
+              {/* TAB 6: EMERGENCY AUTHORITIES & DISASTER HELPLINES */}
+              {activeTab === 'contacts' && (
+                <div className="space-y-6">
+                  <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                    <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
+                      Direct Emergency Response Dispatch
+                    </span>
+                    <h3 className="text-base sm:text-lg font-bold text-white mt-1">
+                      Disaster Relief Helplines &amp; Authorities
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-300 mt-1">
+                      Official 24/7 disaster response helplines active for {targetCity}, {targetState}. Tap any contact to dial directly.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {[
+                      { agency: "Unified National Emergency Service", contact: "112", role: "Integrated Police, Fire, Ambulance & SDRF dispatch across India" },
+                      { agency: "State Disaster Management (SDMA)", contact: "1070", role: "State level Emergency Operations Centre & control room" },
+                      { agency: "District Emergency Control (DEOC)", contact: "1077", role: "Local district collectorate & rapid relief team" },
+                      { agency: "NDRF Operations HQ", contact: "011-24363260", role: "National Search & Mountain Rescue Battalion" },
+                      { agency: "National Highways Helpline", contact: "1033", role: "Highway rescue, crane deployment & rockslide clearance" },
+                      { agency: "Ambulance & Medical Emergency", contact: "108", role: "Mountain trauma response and emergency ambulance dispatch" }
+                    ].map((auth, idx) => (
+                      <div 
+                        key={idx}
+                        className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between gap-3 hover:border-slate-700 transition-colors"
+                      >
+                        <div className="min-w-0">
+                          <span className="text-xs font-bold text-white block truncate">{auth.agency}</span>
+                          <span className="text-[11px] text-slate-400 block mt-0.5">{auth.role}</span>
+                        </div>
+                        <a 
+                          href={`tel:${auth.contact.replace(/\s+/g, '')}`}
+                          className="px-3 py-2 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-400 font-mono font-bold text-xs shrink-0 transition-all flex items-center gap-1.5"
+                        >
+                          <PhoneCall className="w-3.5 h-3.5" />
+                          <span>{auth.contact}</span>
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Safe assembly zone */}
+                  <div className="p-4 rounded-xl bg-slate-950/90 border border-slate-800 flex items-start gap-3">
+                    <MapPin className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-xs font-bold text-slate-200 uppercase tracking-wider block">
+                        Designated Safe Muster &amp; Relief Shelter
+                      </span>
+                      <p className="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
+                        {guide?.safeAssemblyZone || `Municipal Sports Stadium or concrete Community Centre situated on stable ridge spur at ~${targetElevation + 40}m ASL.`}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               )}
 

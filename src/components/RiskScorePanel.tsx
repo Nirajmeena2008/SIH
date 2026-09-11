@@ -274,12 +274,12 @@ export const RiskScorePanel: React.FC<RiskScorePanelProps> = ({
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-1.5">
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-1.5 w-full sm:w-auto">
           <button
             onClick={() => onSimulate(0, 0)}
-            className={`px-2.5 py-1 rounded text-xs font-medium transition-all ${
+            className={`px-2.5 py-2 sm:py-1 rounded-lg text-xs font-semibold text-center transition-all ${
               activeSimulation === 'live'
-                ? 'bg-slate-700 text-white font-bold border border-slate-600'
+                ? 'bg-slate-700 text-white font-bold border border-slate-600 shadow-sm'
                 : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 border border-slate-700/50'
             }`}
           >
@@ -288,9 +288,9 @@ export const RiskScorePanel: React.FC<RiskScorePanelProps> = ({
 
           <button
             onClick={() => onSimulate(18, 0)}
-            className={`px-2.5 py-1 rounded text-xs font-medium transition-all ${
+            className={`px-2.5 py-2 sm:py-1 rounded-lg text-xs font-semibold text-center transition-all ${
               activeSimulation === 'tremor'
-                ? 'bg-amber-600 text-white font-bold'
+                ? 'bg-amber-600 text-white font-bold shadow-sm'
                 : 'bg-slate-800/80 text-amber-300 hover:bg-amber-950/40 border border-amber-800/50'
             }`}
           >
@@ -299,9 +299,9 @@ export const RiskScorePanel: React.FC<RiskScorePanelProps> = ({
 
           <button
             onClick={() => onSimulate(0, 14)}
-            className={`px-2.5 py-1 rounded text-xs font-medium transition-all ${
+            className={`px-2.5 py-2 sm:py-1 rounded-lg text-xs font-semibold text-center transition-all ${
               activeSimulation === 'rain'
-                ? 'bg-sky-600 text-white font-bold'
+                ? 'bg-sky-600 text-white font-bold shadow-sm'
                 : 'bg-slate-800/80 text-sky-300 hover:bg-sky-950/40 border border-sky-800/50'
             }`}
           >
@@ -310,7 +310,7 @@ export const RiskScorePanel: React.FC<RiskScorePanelProps> = ({
 
           <button
             onClick={() => onSimulate(22, 16)}
-            className={`px-2.5 py-1 rounded text-xs font-medium transition-all ${
+            className={`px-2.5 py-2 sm:py-1 rounded-lg text-xs font-semibold text-center transition-all ${
               activeSimulation === 'critical'
                 ? 'bg-rose-600 text-white font-bold shadow-md shadow-rose-600/30'
                 : 'bg-rose-950/40 text-rose-300 hover:bg-rose-900/60 border border-rose-800/60'

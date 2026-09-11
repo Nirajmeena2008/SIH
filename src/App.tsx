@@ -14,7 +14,7 @@ import { generateLocalStationData, generateFallbackReport, STATE_PRESETS } from 
 import { ShieldCheck, RefreshCw } from 'lucide-react';
 
 export default function App() {
-  const [states, setStates] = useState<StatePreset[]>([]);
+  const [states, setStates] = useState<StatePreset[]>(STATE_PRESETS);
   const [selectedStateId, setSelectedStateId] = useState<string>('sikkim');
   const [selectedCity, setSelectedCity] = useState<string>('Gangtok');
   const [stationData, setStationData] = useState<RealStationData | null>(null);

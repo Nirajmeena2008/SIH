@@ -145,17 +145,18 @@ export const RealLeafletMap: React.FC<RealLeafletMapProps> = ({ station }) => {
         <div ref={mapContainerRef} className="w-full h-full" />
 
         {/* Floating coordinates badge */}
-        <div className="absolute bottom-3 left-3 z-10 bg-slate-900/90 border border-slate-700/80 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs text-slate-300 shadow-lg flex items-center gap-2 pointer-events-auto">
-          <Compass className="w-3.5 h-3.5 text-sky-400" />
-          <span>
+        <div className="absolute bottom-3 left-3 z-10 bg-slate-900/90 border border-slate-700/80 backdrop-blur-md px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[11px] sm:text-xs text-slate-300 shadow-lg flex items-center gap-2 pointer-events-auto max-w-[calc(100%-24px)] truncate">
+          <Compass className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+          <span className="truncate">
             {station.city}: <strong className="text-white">{lat.toFixed(3)}°N, {lon.toFixed(3)}°E</strong>
           </span>
         </div>
 
         {/* Floating live weather overlay */}
-        <div className="absolute top-3 right-3 z-10 bg-slate-900/90 border border-slate-700/80 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs text-slate-200 shadow-lg flex items-center gap-2 pointer-events-auto">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-          <span>Live Coordinates from Weatherstack</span>
+        <div className="absolute top-3 right-3 z-10 bg-slate-900/90 border border-slate-700/80 backdrop-blur-md px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[11px] sm:text-xs text-slate-200 shadow-lg flex items-center gap-2 pointer-events-auto">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping shrink-0" />
+          <span className="hidden sm:inline">Live Coordinates from Weatherstack</span>
+          <span className="sm:hidden">Live Radar GPS</span>
         </div>
       </div>
 

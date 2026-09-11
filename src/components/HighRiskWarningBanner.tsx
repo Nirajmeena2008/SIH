@@ -113,11 +113,11 @@ export const HighRiskWarningBanner: React.FC<HighRiskWarningBannerProps> = ({
         </div>
 
         {/* Action Controls */}
-        <div className="flex flex-wrap items-center gap-2.5 self-start md:self-center shrink-0">
+        <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto self-start md:self-center shrink-0">
           <button
             onClick={toggleSiren}
             title="Audio alert test"
-            className="p-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs flex items-center gap-1.5 transition-all"
+            className="p-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs flex items-center justify-center gap-1.5 transition-all"
           >
             {isSirenPlaying ? (
               <VolumeX className="w-4 h-4 text-rose-400 animate-pulse" />
@@ -129,7 +129,7 @@ export const HighRiskWarningBanner: React.FC<HighRiskWarningBannerProps> = ({
 
           <button
             onClick={onOpenAuthorityModal}
-            className="px-4 py-2.5 rounded-lg font-bold text-xs sm:text-sm bg-rose-600 hover:bg-rose-500 text-white shadow-lg shadow-rose-600/40 flex items-center gap-2 transition-all hover:scale-105 active:scale-95"
+            className="flex-1 sm:flex-initial px-4 py-2.5 rounded-lg font-bold text-xs sm:text-sm bg-rose-600 hover:bg-rose-500 text-white shadow-lg shadow-rose-600/40 flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95"
           >
             <Send className="w-4 h-4" />
             <span>Send Warning to Authorities</span>
@@ -137,7 +137,7 @@ export const HighRiskWarningBanner: React.FC<HighRiskWarningBannerProps> = ({
 
           <button
             onClick={onOpenHelplines}
-            className="px-3 py-2.5 rounded-lg font-bold text-xs bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700 flex items-center gap-1.5 transition-all"
+            className="px-3 py-2.5 rounded-lg font-bold text-xs bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700 flex items-center justify-center gap-1.5 transition-all"
           >
             <PhoneCall className="w-4 h-4 text-emerald-400" />
             <span>Dial 112</span>

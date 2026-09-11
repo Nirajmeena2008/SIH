@@ -1,0 +1,7 @@
+{
+  "name": "NER Landslide Early Warning System",
+  "description": "AI-powered landslide risk prediction and early warning monitoring platform for North-Eastern Region India using satellite radar imagery, real-time Weatherstack meteorology, automated sirens, and 10-minute interval trend analysis.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
